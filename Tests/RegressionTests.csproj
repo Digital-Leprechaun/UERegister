@@ -1,0 +1,15 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <OutputType>Exe</OutputType><TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AssemblyName>RegressionTests</AssemblyName><OutputPath>bin\$(Configuration)\</OutputPath><PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" /><Reference Include="System.Core" /><Reference Include="System.Web.Extensions" />
+    <Compile Include="RegressionTests.cs" />
+    <ProjectReference Include="..\UERegister\UERegister.csproj" Condition="'$(UERegisterAssemblyPath)' == ''"><Name>UERegister</Name><AdditionalProperties>SkipReleasePackaging=true</AdditionalProperties></ProjectReference>
+    <Reference Include="UERegister" Condition="'$(UERegisterAssemblyPath)' != ''"><HintPath>$(UERegisterAssemblyPath)</HintPath><Private>True</Private></Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
